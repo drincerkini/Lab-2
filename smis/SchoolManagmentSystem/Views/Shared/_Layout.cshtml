@@ -23,8 +23,11 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
 
+                        <li class="nav-item mx-10">
+                                    <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Adm" asp-action="Index">Dashboard</a>
+                                </li>
 
-                        @if (User.Identity.IsAuthenticated)
+                        @*@if (User.Identity.IsAuthenticated)
 
                         {
                             @if (User.IsInRole("Admin"))
@@ -32,10 +35,10 @@
                                 <li class="nav-item mx-10">
                                     <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Adm" asp-action="Index">Dashboard</a>
                                 </li>
-                            }
+                            }*@
 
                             <!-- Example single danger button -->
-                            <div class="btn-group">
+                           @* <div class="btn-group">
                                 <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     University
                                 </button>
@@ -60,10 +63,10 @@
                                     </li>
 
                                 </ul>
-                            </div>
+                            </div>*@
 
                             <!-- Example single danger button -->
-                            <div class="btn-group">
+                           @* <div class="btn-group">
                                 <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     Students Interests
                                 </button>
@@ -80,7 +83,7 @@
                                 </ul>
                             </div>
 
-                        }
+                        }*@
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
