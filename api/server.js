@@ -9,13 +9,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
-import productsRouter from "./routes/productsRouter";
 import multer from "multer";
-import serviceRouter from "./routes/serviceRouter";
-import teamRouter from "./routes/teamRouter";
-import newsRouter from "./routes/newsRouter";
-import reviewsRouter from "./routes/ReviewsRouter";
-import contactRouter from "./routes/contactRouter";
 
 mongoose
   .connect(`${MONGO_CONECTION_URI}:${MONGO_PORT}/${MONGO_DB_NAME}`)
@@ -47,19 +41,9 @@ mongoose
       })
     );
 
-    // API Routes
+    // API Routes....
 
-    app.use("/products", upload.single("image"), productsRouter);
-
-    app.use("/services", upload.single("image"), serviceRouter);
-
-    app.use("/teams", upload.single("image"), teamRouter);
-
-    app.use("/news", upload.single("image"), newsRouter);
-
-    app.use("/reviews", reviewsRouter);
-
-    app.use("/contact", contactRouter);
+   
 
     app.get("*", (req, res) => {
       res.json({ msg: "Not Found" });

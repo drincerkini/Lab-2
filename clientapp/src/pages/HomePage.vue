@@ -1,10 +1,14 @@
 <template>
+<CaruselComponent />
   <section id="about-section" class="pt-5 pb-5">
+    
     <div class="container wrapabout">
-      <CaruselComponent />
+      
       <br />
       <br />
-      <h1 class="page-header text-center">Latest News</h1>
+        <div class="text-center mb-2-3 mb-lg-6">
+            <h2 class="h1 mb-5 text-secondary">Latest News  </h2>
+        </div>
       <br />
       <br />
       <br />
@@ -23,8 +27,7 @@
               </div>
             </div>
             <br />
-            <br />
-            <br />
+      <button class="btn btn-danger" v-on:click="handleDelete(news._id)">Delete</button>
           </div>
 
 

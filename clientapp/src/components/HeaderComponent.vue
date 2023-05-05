@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-lg p-3 mb-0" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg p-2 mb-0" style="background-color: #008F8C;">
       <div class="container-fluid">
         <img src="../../public/img/logo.png" data-holder-rendered="true" style="width: 120px; height: 105px;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,20 +8,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li v-for="route in routes" v-bind:key="route.name">
-              <router-link v-bind:to="route.path" class="nav-item nav-link">{{ route.name }}</router-link>
+              <router-link v-bind:to="route.path" class="nav-item nav-link text-white">{{ route.name }}</router-link>
             </li>
           </ul>
           <div class="d-flex" role="search">
               <div v-if="this.user" id="main-nav" class="collapse navbar-collapse">
-                  <div class="nav-item nav-link">
-                    Hello {{ $store.state.userModule.user.displayName }}!
+                  <div class="nav-item nav-link me-4">
+                    Hello {{ $store.state.userModule.user.displayName }} !
                   </div>
                   
-                  <a href="#" @click.prevent="handleLogOut" type="button" class="nav-item nav-link">Logout</a>
+                  <a href="#" @click.prevent="handleLogOut" type="button" class="nav-item nav-link btn btn-danger p-2 text-white"> <i class="fa fa-sign-out"></i> Logout</a>
                 </div>
                 <div v-else id="main-nav" class="collapse navbar-collapse">
-                  <router-link :to="{ name: 'login' }" class="nav-item nav-link ">Login</router-link>
-                  <router-link to="/register" class="nav-item nav-link">Register</router-link>
+                  <router-link :to="{ name: 'login' }" class="nav-item nav-link btn btn-light px-4 py-2 me-2">Login</router-link>
+                  <router-link to="/register" class="nav-item nav-link btn btn-light  px-4 py-2 ">Register</router-link>
                 </div>
               </div>
           </div>
