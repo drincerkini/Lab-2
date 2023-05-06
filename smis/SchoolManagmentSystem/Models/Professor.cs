@@ -41,12 +41,14 @@ namespace SchoolManagmentSystem.Models
         }
 
         //relationship
+
         // public ICollection<Course>? Courses { get; set; }
         public ICollection<CourseAssignment>? CourseAssignments { get; set; }
+
         public int DepartmentID { get; set; }
+
         [ForeignKey("DepartmentID")]
         public Department? Department { get; set; }
-
 
         public ICollection<Assistant>? Assistants { get; set; }
 

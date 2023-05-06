@@ -44,7 +44,6 @@ namespace SchoolManagmentSystem.Models
         [ForeignKey("ProfessorID")]
         public Professor? Professor { get; set; }
 
-
         public int DepartmentID { get; set; }
         [ForeignKey("DepartmentID")]
         public Department? Department { get; set; }

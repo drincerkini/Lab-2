@@ -15,10 +15,13 @@ namespace SchoolManagmentSystem.Models
         [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
 
+
         //relationships
 
         public ICollection<Course>? Courses { get; set; }
+
         public ICollection<Professor>? Professors { get; set; }
+
         public ICollection<Assistant>? Assistants { get; set; }
 
         public ICollection<AcStaff>? AcStaffs { get; set; }

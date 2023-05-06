@@ -39,7 +39,10 @@ namespace SchoolManagmentSystem.Models
         {
             get { return Name + " " + Surname; }
         }
+
+        //relationship
         public int DepartmentID { get; set; }
+
         [ForeignKey("DepartmentID")]
         public Department? Department { get; set; }
     }
