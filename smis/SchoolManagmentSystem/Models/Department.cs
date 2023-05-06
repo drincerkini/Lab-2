@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagmentSystem.Models
 {
-	public class Department
-	{
-		[Key]
-		public int DepartmentID { get; set; }
+    public class Department
+    {
+        [Key]
+        public int DepartmentID { get; set; }
 
         [Required]
-        [StringLength(25, ErrorMessage = "Name cannot be longer than 25 characters")]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Name cannot be shorter than 2 characters or longer than 20 characters.")]
         public string Name { get; set; }
 
         [DataType(DataType.Date)]
