@@ -9,10 +9,10 @@ namespace SchoolManagmentSystem.Models
         [Display(Name = "Number")]
         public int StudentID { get; set; }
         [Required]
-        [StringLength(15, MinimumLength = 2, ErrorMessage = "Name cannot be shorter than 2 characters or shorter than 15 characters.")]
+        [StringLength(15, MinimumLength = 2, ErrorMessage = "Name cannot be shorter than 2 characters or longer than 15 characters.")]
         public string Name { get; set; }
         [Required]
-        [StringLength(15, MinimumLength = 2, ErrorMessage = "Surname cannot be shorter than 2 characters or shorter than 15 characters.")]
+        [StringLength(15, MinimumLength = 2, ErrorMessage = "Surname cannot be shorter than 2 characters or longer than 15 characters.")]
         public string Surname { get; set; }
         [Required]
         [EmailAddress]
