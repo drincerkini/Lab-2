@@ -10,11 +10,11 @@ namespace SchoolManagmentSystem.Models
         public int AcStaffID { get; set; }
 
         [Required]
-        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters")]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "Name cannot be shorter than 3 characters or longer than 15 characters.")]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(50, ErrorMessage = "Surname name cannot be longer than 50 characters")]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "Name cannot be shorter than 3 characters or longer than 15 characters.")]
         public string Surname { get; set; }
 
         [Required]
