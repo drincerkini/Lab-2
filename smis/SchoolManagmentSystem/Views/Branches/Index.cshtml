@@ -4,44 +4,74 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+
+
+
+
+
+
+<h1 class="text-center">Branches</h1>
+
+<div class="container d-flex justify-content-between">
+
+    <p>
+        <button class="btn btn btn-outline-light">
+            <a class="btn btn-outline-light text-primary" asp-action="Create">Create New Branch</a>
+        </button>
+    </p>
+
+    <form asp-action="Index" method="get">
+        <div class="input-group">
+            <div class="form-outline">
+                <input type="search" id="form1" class="form-control" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Search Branches" />
+            </div>
+            <button type="submit" class="btn btn-light">
+                Search
+            </button>
+        </div>
+    </form>
+</div>
+
+
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.SMIAL)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model.Name)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Location)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model.Location)</a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SMIAL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BranchID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BranchID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BranchID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SMIAL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @*@if (User.IsInRole("Admin"))*@
+                    
+                        <a class="btn btn-ligt text-secondary" asp-action="Edit" asp-route-id="@item.BranchID">Edit</a>
+                        <a class="btn btn-ligt text-secondary" asp-action="Details" asp-route-id="@item.BranchID">Details</a>
+                        <a class="btn btn-ligt text-danger" asp-action="Delete" asp-route-id="@item.BranchID">Delete</a>
+                    
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
