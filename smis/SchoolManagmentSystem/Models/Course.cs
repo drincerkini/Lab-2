@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
 namespace SchoolManagmentSystem.Models
@@ -15,6 +16,12 @@ namespace SchoolManagmentSystem.Models
         [Range(0, 12)]
         public int ECTS { get; set; }
 
+        //relationship
 
+        public int DepartmentID { get; set; }
+        [ForeignKey("DepartmentID")]
+        public Department? Department { get; set; }
+        public ICollection<Enrollment>? Enrollments { get; }
+        // public ICollection<Professor>? Professors { get; }
     }
 }

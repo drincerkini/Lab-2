@@ -30,6 +30,9 @@ namespace SchoolManagmentSystem.Models
 
         //relationship
 
+        public ICollection<DeptBranch> DeptBranches { get; set; }
+        //public ICollection<Department> Departments { get; set; }
+
     }
 }
 

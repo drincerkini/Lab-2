@@ -17,7 +17,17 @@ namespace SchoolManagmentSystem.Models
 
         //relationships
 
+        public ICollection<Course>? Courses { get; set; }
+        public ICollection<Professor>? Professors { get; set; }
+        public ICollection<Assistant>? Assistants { get; set; }
 
+        public ICollection<AcStaff>? AcStaffs { get; set; }
+
+        //M-M
+        public ICollection<DeptBranch>? DeptBranches { get; set; }
+        //  public ICollection<Branch> Branches { get; set; }
+
+        public ICollection<Student>? Students { get; set; }
     }
 }
 

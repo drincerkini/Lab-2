@@ -37,5 +37,11 @@ namespace SchoolManagmentSystem.Models
                 return Name + " " + Surname;
             }
         }
+
+        //relationship
+        public ICollection<Enrollment>? Enrollments { get; set; }
+        // public ICollection<Course> Courses { get; set; }
+
+        public Department? Department { get; set; }
     }
 }
