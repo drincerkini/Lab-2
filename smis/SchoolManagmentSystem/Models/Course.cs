@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace SchoolManagmentSystem.Models
 {
@@ -8,7 +9,7 @@ namespace SchoolManagmentSystem.Models
         [Display(Name = "Number")]
         public int CourseID { get; set; }
         [Required]
-        [StringLength(25, MinimumLength = 3)]
+        [StringLength(25, MinimumLength = 2, ErrorMessage = "Title cannot be shorter than 2 characters or longer than 25 characters.")]
         public string? Title { get; set; }
         [Required]
         [Range(0, 12)]
