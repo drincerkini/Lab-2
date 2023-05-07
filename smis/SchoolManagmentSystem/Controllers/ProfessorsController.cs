@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,13 +20,73 @@ namespace SchoolManagmentSystem.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET: Professors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
-            var applicationDbContext = _context.Professors.Include(p => p.Department);
-            return View(await applicationDbContext.ToListAsync());
-        }
+            {
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
+                ViewData["SurnameSortParm"] = sortOrder == "Surname" ? "surname_desc" : "Surname";
+                ViewData["HireDateSortParm"] = sortOrder == "HireDate" ? "hiredate_desc" : "HireDate";
+                ViewData["BirthDateSortParm"] = sortOrder == "BirthDate" ? "birthdate_desc" : "BirthDate";
 
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                ViewData["CurrentFilter"] = searchString;
+
+
+                var professors = from p in _context.Professors
+                                 select p;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    professors = professors.Where(p => p.Name.Contains(searchString)
+                                           || p.Surname.Contains(searchString));
+                }
+
+                switch (sortOrder)
+                {
+                    case "Name":
+                        professors = professors.OrderBy(p => p.Name);
+                        break;
+                    case "name_desc":
+                        professors = professors.OrderByDescending(p => p.Name);
+                        break;
+                    case "Surname":
+                        professors = professors.OrderBy(p => p.Surname);
+                        break;
+                    case "surname_desc":
+                        professors = professors.OrderByDescending(p => p.Surname);
+                        break;
+                    case "HireDate":
+                        professors = professors.OrderBy(p => p.HireDate);
+                        break;
+                    case "hiredate_desc":
+                        professors = professors.OrderByDescending(p => p.HireDate);
+                        break;
+                    case "BirthDate":
+                        professors = professors.OrderBy(p => p.BirthDate);
+                        break;
+                    case "birthdate_desc":
+                        professors = professors.OrderByDescending(p => p.BirthDate);
+                        break;
+                    default:
+                        professors = professors.OrderBy(p => p.Name);
+                        break;
+                }
+
+                int pageSize = 5;
+                return View(await PaginatedList<Professor>.CreateAsync(professors.Include(p => p.Department).AsNoTracking(), pageNumber ?? 1, pageSize));
+            }
+        }
         // GET: Professors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -155,14 +216,24 @@ namespace SchoolManagmentSystem.Controllers
             {
                 _context.Professors.Remove(professor);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProfessorExists(int id)
         {
-          return _context.Professors.Any(e => e.ProfessorID == id);
+            return _context.Professors.Any(e => e.ProfessorID == id);
         }
+        [AllowAnonymous]
+        public async Task<IActionResult> ProfAssistList(int? id)
+        {
+            var assistants = await _context.Assistants
+                .Where(a => a.ProfessorID == id)
+                .ToListAsync();
+
+            return View(assistants);
+        }
+
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,11 +21,57 @@ namespace SchoolManagmentSystem.Controllers
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+
+        [AllowAnonymous]
+        // GET: Departments
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
-              return _context.Departments != null ? 
-                          View(await _context.Departments.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Departments'  is null.");
+            {
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
+                ViewData["CreatedDateParm"] = sortOrder == "CreatedDate" ? "createddate_desc" : "CreatedDate";
+
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                ViewData["CurrentFilter"] = searchString;
+
+                var departments = from d in _context.Departments
+                                  select d;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    departments = departments.Where(d => d.Name.Contains(searchString));
+                }
+
+                switch (sortOrder)
+                {
+                    case "Name":
+                        departments = departments.OrderBy(d => d.Name);
+                        break;
+                    case "name_desc":
+                        departments = departments.OrderByDescending(d => d.Name);
+                        break;
+                    case "CreatedDate":
+                        departments = departments.OrderBy(d => d.CreatedDate);
+                        break;
+                    case "createddate_desc":
+                        departments = departments.OrderByDescending(d => d.CreatedDate);
+                        break;
+                    default:
+                        departments = departments.OrderBy(d => d.Name);
+                        break;
+                }
+
+                int pageSize = 5;
+                return View(await PaginatedList<Department>.CreateAsync(departments.AsNoTracking(), pageNumber ?? 1, pageSize));
+            }
         }
 
         // GET: Departments/Details/5
@@ -150,14 +197,35 @@ namespace SchoolManagmentSystem.Controllers
             {
                 _context.Departments.Remove(department);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DepartmentExists(int id)
         {
-          return (_context.Departments?.Any(e => e.DepartmentID == id)).GetValueOrDefault();
+            return (_context.Departments?.Any(e => e.DepartmentID == id)).GetValueOrDefault();
         }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> DepProfessorsList(int? id)
+        {
+            var professors = await _context.Professors
+                .Where(p => p.DepartmentID == id)
+                .ToListAsync();
+
+            return View(professors);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> DepCoursesList(int? id)
+        {
+            var courses = await _context.Courses
+                .Where(c => c.DepartmentID == id)
+                .ToListAsync();
+
+            return View(courses);
+        }
+
     }
 }

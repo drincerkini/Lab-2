@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,11 +20,70 @@ namespace SchoolManagmentSystem.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
+
         // GET: Assistants
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
-            var applicationDbContext = _context.Assistants.Include(a => a.Department).Include(a => a.Professor);
-            return View(await applicationDbContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewData["SurnameSortParm"] = sortOrder == "Surname" ? "surname_desc" : "Surname";
+            ViewData["HireDateSortParm"] = sortOrder == "HireDate" ? "hiredate_desc" : "HireDate";
+            ViewData["BirthDateSortParm"] = sortOrder == "BirthDate" ? "birthdate_desc" : "BirthDate";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+            var assistants = from a in _context.Assistants
+                             select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                assistants = assistants.Where(a => a.Name.Contains(searchString)
+                                       || a.Surname.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "Name":
+                    assistants = assistants.OrderBy(a => a.Name);
+                    break;
+                case "name_desc":
+                    assistants = assistants.OrderByDescending(a => a.Name);
+                    break;
+                case "Surname":
+                    assistants = assistants.OrderBy(a => a.Surname);
+                    break;
+                case "surname_desc":
+                    assistants = assistants.OrderByDescending(a => a.Surname);
+                    break;
+                case "HireDate":
+                    assistants = assistants.OrderBy(a => a.HireDate);
+                    break;
+                case "hiredate_desc":
+                    assistants = assistants.OrderByDescending(a => a.HireDate);
+                    break;
+                case "BirthDate":
+                    assistants = assistants.OrderBy(a => a.BirthDate);
+                    break;
+                case "birthdate_desc":
+                    assistants = assistants.OrderByDescending(a => a.BirthDate);
+                    break;
+                default:
+                    assistants = assistants.OrderBy(a => a.Name);
+                    break;
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<Assistant>.CreateAsync(assistants.Include(a => a.Professor).Include(a => a.Department).AsNoTracking(), pageNumber ?? 1, pageSize));
+
         }
 
         // GET: Assistants/Details/5
@@ -50,7 +110,7 @@ namespace SchoolManagmentSystem.Controllers
         public IActionResult Create()
         {
             ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name");
-            ViewData["ProfessorID"] = new SelectList(_context.Professors, "ProfessorID", "Email");
+            ViewData["ProfessorID"] = new SelectList(_context.Professors, "ProfessorID", "Name");
             return View();
         }
 
@@ -68,7 +128,7 @@ namespace SchoolManagmentSystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", assistant.DepartmentID);
-            ViewData["ProfessorID"] = new SelectList(_context.Professors, "ProfessorID", "Email", assistant.ProfessorID);
+            ViewData["ProfessorID"] = new SelectList(_context.Professors, "ProfessorID", "Name", assistant.ProfessorID);
             return View(assistant);
         }
 
@@ -86,7 +146,7 @@ namespace SchoolManagmentSystem.Controllers
                 return NotFound();
             }
             ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", assistant.DepartmentID);
-            ViewData["ProfessorID"] = new SelectList(_context.Professors, "ProfessorID", "Email", assistant.ProfessorID);
+            ViewData["ProfessorID"] = new SelectList(_context.Professors, "ProfessorID", "Name", assistant.ProfessorID);
             return View(assistant);
         }
 
@@ -123,7 +183,7 @@ namespace SchoolManagmentSystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", assistant.DepartmentID);
-            ViewData["ProfessorID"] = new SelectList(_context.Professors, "ProfessorID", "Email", assistant.ProfessorID);
+            ViewData["ProfessorID"] = new SelectList(_context.Professors, "ProfessorID", "Name", assistant.ProfessorID);
             return View(assistant);
         }
 
@@ -161,14 +221,14 @@ namespace SchoolManagmentSystem.Controllers
             {
                 _context.Assistants.Remove(assistant);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AssistantExists(int id)
         {
-          return (_context.Assistants?.Any(e => e.AssistantID == id)).GetValueOrDefault();
+            return (_context.Assistants?.Any(e => e.AssistantID == id)).GetValueOrDefault();
         }
     }
 }
