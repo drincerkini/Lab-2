@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolManagmentSystem.Models
 {
@@ -46,6 +47,9 @@ namespace SchoolManagmentSystem.Models
         public ICollection<Enrollment>? Enrollments { get; set; }
         // public ICollection<Course> Courses { get; set; }
 
+        public int DepartmentID { get; set; }
+
+        [ForeignKey("DepartmentID")]
         public Department? Department { get; set; }
     }
 }
