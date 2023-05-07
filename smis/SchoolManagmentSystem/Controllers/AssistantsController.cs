@@ -11,6 +11,7 @@ using SchoolManagmentSystem.Models;
 
 namespace SchoolManagmentSystem.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AssistantsController : Controller
     {
         private readonly ApplicationDbContext _context;
