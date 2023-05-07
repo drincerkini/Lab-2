@@ -27,7 +27,7 @@
                                     <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Adm" asp-action="Index">Dashboard</a>
                                 </li>
 
-                        @*@if (User.Identity.IsAuthenticated)
+                        @if (User.Identity.IsAuthenticated)
 
                         {
                             @if (User.IsInRole("Admin"))
@@ -35,7 +35,7 @@
                                 <li class="nav-item mx-10">
                                     <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Adm" asp-action="Index">Dashboard</a>
                                 </li>
-                            }*@
+                            }
 
                             <!-- Example single danger button -->
                             <div class="btn-group">
@@ -77,13 +77,11 @@
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Enrollments" asp-action="Index">Enrollments</a>
                                     </li>
-                                    <li>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Transcripts" asp-action="Index">Transcripts</a>
-                                    </li>
+
                                 </ul>
                             </div>
+                        }
 
-                        
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
