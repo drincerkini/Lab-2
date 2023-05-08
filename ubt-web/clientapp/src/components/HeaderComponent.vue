@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar navbar-expand-lg p-2 mb-0" style="background-color: #008F8C;">
       <div class="container-fluid">
-        <img src="../../public/img/logo.png" data-holder-rendered="true" style="width: 120px; height: 105px;">
+        <!-- <img src="../../public/img/logo.png" data-holder-rendered="true" style="width: 120px; height: 105px;"> -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -61,12 +61,10 @@ export default {
   data() {
     return {
       routes: [
+      { path: "/admin", name: "Dashboard" },
         { path: "/", name: "Home" },
         { path: "/about", name: "About" },
-        { path: "/products", name: "Products" },
-        { path: "/services", name: "Services" },
         { path: "/contact", name: "Contact" },
-        { path: "/admin", name: "Dashboard" }
       ],
     }
   }
