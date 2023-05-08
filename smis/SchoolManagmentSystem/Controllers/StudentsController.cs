@@ -21,7 +21,6 @@ namespace SchoolManagmentSystem.Controllers
             _context = context;
         }
 
-        // GET: Students
         [AllowAnonymous]
         // GET: Students
         public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
@@ -99,6 +98,7 @@ namespace SchoolManagmentSystem.Controllers
             }
 
             var student = await _context.Students
+                .Include(m => m.Department)
                 .FirstOrDefaultAsync(m => m.StudentID == id);
             if (student == null)
             {
@@ -144,6 +144,7 @@ namespace SchoolManagmentSystem.Controllers
             {
                 return NotFound();
             }
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", student.DepartmentID);
             return View(student);
         }
 
