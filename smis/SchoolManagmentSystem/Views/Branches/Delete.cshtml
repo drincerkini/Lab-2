@@ -22,12 +22,7 @@
                     <input readonly asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-                <div class="form-group col-md-4 ">
-                    <label asp-for="Location" class="control-label"></label>
-                    <input readonly asp-for="Location" class="form-control" />
-                    <span asp-validation-for="Location" class="text-danger"></span>
-                </div>
-            </div>
+      
     <form asp-action="Delete" class="text-center" >
         <input type="hidden" asp-for="BranchID" />
         <input type="submit" value="Delete" class="btn btn-danger" />
