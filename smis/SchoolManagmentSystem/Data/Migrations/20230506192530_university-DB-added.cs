@@ -202,7 +202,7 @@ namespace SchoolManagmentSystem.Data.Migrations
                         column: x => x.ProfessorID,
                         principalTable: "Professors",
                         principalColumn: "ProfessorID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

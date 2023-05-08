@@ -198,7 +198,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("AcStaffs");
+                    b.ToTable("AcStaffs", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.ApplicationUser", b =>
@@ -318,7 +318,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("ProfessorID");
 
-                    b.ToTable("Assistants");
+                    b.ToTable("Assistants", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Branch", b =>
@@ -342,7 +342,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasKey("BranchID");
 
-                    b.ToTable("Branches");
+                    b.ToTable("Branches", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Course", b =>
@@ -368,7 +368,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.CourseAssignment", b =>
@@ -391,7 +391,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("ProfessorID");
 
-                    b.ToTable("CourseAssignments");
+                    b.ToTable("CourseAssignments", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Department", b =>
@@ -412,7 +412,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasKey("DepartmentID");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.DeptBranch", b =>
@@ -435,7 +435,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("DeptBranches");
+                    b.ToTable("DeptBranches", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Enrollment", b =>
@@ -461,7 +461,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("Enrollments");
+                    b.ToTable("Enrollments", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Professor", b =>
@@ -503,7 +503,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Professors");
+                    b.ToTable("Professors", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Student", b =>
@@ -545,7 +545,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
