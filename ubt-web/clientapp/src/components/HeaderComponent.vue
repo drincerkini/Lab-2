@@ -1,14 +1,22 @@
 <template>
-<nav class="navbar navbar-expand-lg p-2 mb-0" style="background-color: #008F8C;">
-      <div class="container-fluid">
+
+  <section class="navbar navbar-expand-lg p-2 mb-0" style="background-color: #060832;">
+    <div class="container ">
+      <h3 class="text-center text-white">VITI AKADEMIK 2022/2023 </h3>
+      <button class="nav-item nav-link btn btn-light px-4 py-2 me-2" >APLIKO TANI</button>
+    </div>
+  </section>
+  
+<nav class="navbar navbar-expand-lg p-5 mb-0" style="background-color: #c9d7d7;">
+      <div class="container-fluid ">
         <!-- <img src="../../public/img/logo.png" data-holder-rendered="true" style="width: 120px; height: 105px;"> -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto ">
             <li v-for="route in routes" v-bind:key="route.name">
-              <router-link v-bind:to="route.path" class="nav-item nav-link text-white">{{ route.name }}</router-link>
+              <router-link v-bind:to="route.path" class="nav-item nav-link ">{{ route.name }}</router-link>
             </li>
           </ul>
           <div class="d-flex" role="search">

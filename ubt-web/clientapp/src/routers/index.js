@@ -10,10 +10,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home,
-    meta: {
-      isUser: true,
-    },
+    component: Home
   },
 
   {
