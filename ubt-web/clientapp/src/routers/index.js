@@ -1,6 +1,7 @@
 import Home from "../pages/HomePage.vue";
 import Register from "../pages/RegisterPage.vue";
 import Login from "../pages/LoginPage.vue";
+import CreateNewsPage from '../pages/CreateNewsPage.vue'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
@@ -11,6 +12,12 @@ const routes = [
     path: "/",
     name: "home",
     component: Home
+  },
+
+  {
+    path: "/create-news",
+    name: "create-news",
+    component: CreateNewsPage
   },
 
   {

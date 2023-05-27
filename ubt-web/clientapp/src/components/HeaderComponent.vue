@@ -8,14 +8,14 @@
   </section>
   
 <nav class="navbar navbar-expand-lg p-5 mb-0" style="background-color: #c9d7d7;">
-      <div class="container-fluid ">
-        <!-- <img src="../../public/img/logo.png" data-holder-rendered="true" style="width: 120px; height: 105px;"> -->
+      <div class="container-fluid text-center">
+        <img src="../../public/img/ubt.png" data-holder-rendered="true" style="width: 95px; height: 100px;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav me-auto ">
-            <li v-for="route in routes" v-bind:key="route.name">
+            <li v-for="route in routes" v-bind:key="route.name" class="text-uppercase">
               <router-link v-bind:to="route.path" class="nav-item nav-link ">{{ route.name }}</router-link>
             </li>
           </ul>

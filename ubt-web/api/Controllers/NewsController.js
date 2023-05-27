@@ -1,10 +1,15 @@
 import NewsModel from '../models/NewsModel';
+import moment from 'moment';
 
 const newsController = {
     get: async(req, res) => {
         try{
             const list = await NewsModel.find();
-            return res.json(list);
+            const formattedList = list.map(news => ({
+                ...news.toObject(),
+                createdAt: moment(news.createdAt).format('MMM D, YYYY'),
+            }));
+            return res.json(formattedList);
         }catch(err){
             console.log('error -- ', err);
         }
