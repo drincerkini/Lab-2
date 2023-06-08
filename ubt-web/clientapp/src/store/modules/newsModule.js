@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL_NEWS = 'http://localhost:5000/news';
+const API_URL_NEWS = 'http://localhost:5001/news';
 
 const newsModule = {
     namespaced: true,

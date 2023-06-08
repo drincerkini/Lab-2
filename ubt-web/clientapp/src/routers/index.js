@@ -2,6 +2,8 @@ import Home from "../pages/HomePage.vue";
 import Register from "../pages/RegisterPage.vue";
 import Login from "../pages/LoginPage.vue";
 import CreateNewsPage from '../pages/CreateNewsPage.vue'
+import CreateDepartmentPage from '../pages/CreateDepartmentPage.vue'
+import DepartmentCardComponent from '../pages/DepartmentPage.vue'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
@@ -18,6 +20,18 @@ const routes = [
     path: "/create-news",
     name: "create-news",
     component: CreateNewsPage
+  },
+
+  {
+    path: "/create-department",
+    name: "create-department",
+    component: CreateDepartmentPage
+  },
+
+  {
+    path: "/departments",
+    name: "departments",
+    component: DepartmentCardComponent
   },
 
   {
