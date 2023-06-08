@@ -6,6 +6,9 @@ import CreateDepartmentPage from '../pages/CreateDepartmentPage.vue'
 import DepartmentCardComponent from '../pages/DepartmentPage.vue'
 import BranchPage from '../pages/BranchPage.vue'
 import CreateBranchPage from '../pages/CreateBranchPage.vue'
+import ProfessorPage from '../pages/ProfessorPage.vue'
+import CreateProfessorPage from '../pages/CreateProfessorPage.vue'
+
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
@@ -46,6 +49,18 @@ const routes = [
     path: "/create-branch",
     name: "create-branch",
     component: CreateBranchPage
+  },
+
+  {
+    path: "/create-professor",
+    name: "create-professor",
+    component: CreateProfessorPage
+  },
+
+  {
+    path: "/professors",
+    name: "professors",
+    component: ProfessorPage
   },
 
   {
