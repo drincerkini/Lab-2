@@ -4,6 +4,7 @@ import newsModule from "./modules/newsModule";
 import departmentModule from "./modules/departmentModule";
 import branchModule from "./modules/branchModule";
 import professorModule  from "./modules/professorModule";
+import applicationModule from "./modules/applicationModule";
 
 const store = createStore({
   modules: {
@@ -11,7 +12,8 @@ const store = createStore({
     newsModule,
     departmentModule,
     branchModule,
-    professorModule
+    professorModule,
+    applicationModule
 
   },
 });

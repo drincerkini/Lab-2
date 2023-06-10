@@ -3,7 +3,7 @@
   <section class="navbar navbar-expand-lg p-2 mb-0" style="background-color: #060832;">
     <div class="container ">
       <h3 class="text-center text-white">VITI AKADEMIK 2022/2023 </h3>
-      <button class="nav-item nav-link btn btn-light px-4 py-2 me-2" >APLIKO TANI</button>
+      <router-link to="/application" class="nav-item nav-link btn btn-light px-4 py-2 me-2" >APLIKO TANI</router-link>
     </div>
   </section>
   
