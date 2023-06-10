@@ -9,7 +9,7 @@ import CreateBranchPage from '../pages/CreateBranchPage.vue'
 import ProfessorPage from '../pages/ProfessorPage.vue'
 import CreateProfessorPage from '../pages/CreateProfessorPage.vue'
 import ApplicationPage from '../pages/ApplicationPage.vue'
-
+import ContactPage from '../pages/ContactPage.vue'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
@@ -68,6 +68,12 @@ const routes = [
     path: "/application",
     name: "application",
     component: ApplicationPage
+  },
+
+  {
+    path: "/contact",
+    name: "contact",
+    component: ContactPage
   },
 
   {

@@ -5,6 +5,7 @@ import departmentModule from "./modules/departmentModule";
 import branchModule from "./modules/branchModule";
 import professorModule  from "./modules/professorModule";
 import applicationModule from "./modules/applicationModule";
+import contactModule from "./modules/contactModule";
 
 const store = createStore({
   modules: {
@@ -13,7 +14,8 @@ const store = createStore({
     departmentModule,
     branchModule,
     professorModule,
-    applicationModule
+    applicationModule,
+    contactModule
 
   },
 });
