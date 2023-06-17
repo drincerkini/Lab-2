@@ -10,6 +10,9 @@ import ProfessorPage from '../pages/ProfessorPage.vue'
 import CreateProfessorPage from '../pages/CreateProfessorPage.vue'
 import ApplicationPage from '../pages/ApplicationPage.vue'
 import ContactPage from '../pages/ContactPage.vue'
+import AdminDashboardPage from '../pages/AdminDashboardPage.vue'
+import ContactListPage from '../pages/ContactListPage.vue'
+import ApplicationListPage from '../pages/ApplicationListPage.vue'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
@@ -71,9 +74,27 @@ const routes = [
   },
 
   {
+    path: "/application-list",
+    name: "application-list",
+    component: ApplicationListPage
+  },
+
+  {
     path: "/contact",
     name: "contact",
     component: ContactPage
+  },
+
+  {
+    path: "/contact-list",
+    name: "contact-list",
+    component: ContactListPage
+  },
+
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: AdminDashboardPage
   },
 
   {

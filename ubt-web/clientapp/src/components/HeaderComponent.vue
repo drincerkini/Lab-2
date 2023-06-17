@@ -69,7 +69,7 @@ export default {
   data() {
     return {
       routes: [
-      { path: "/admin", name: "Dashboard" },
+        { path: "/dashboard", name: "Dashboard" },
         { path: "/", name: "Home" },
         { path: "/about", name: "About" },
         { path: "/contact", name: "Contact" },
