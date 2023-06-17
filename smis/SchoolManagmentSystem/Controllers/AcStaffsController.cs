@@ -1,8 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,21 +13,81 @@ using SchoolManagmentSystem.Models;
 
 namespace SchoolManagmentSystem.Controllers
 {
-    [Authorize(Roles ="Admin")] 
+    [Authorize(Roles = "Admin")]
     public class AcStaffsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AcStaffsController(ApplicationDbContext context)
+        public AcStaffsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: AcStaffs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
-            var applicationDbContext = _context.AcStaffs.Include(a => a.Department);
-            return View(await applicationDbContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewData["SurnameSortParm"] = sortOrder == "Surname" ? "surname_desc" : "Surname";
+            ViewData["HireDateSortParm"] = sortOrder == "HireDate" ? "hiredate_desc" : "HireDate";
+            ViewData["BirthDateSortParm"] = sortOrder == "BirthDate" ? "birthdate_desc" : "BirthDate";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var applicationDbContext = _context.AcStaffs.Include(a => a.Branch);
+
+            var acstaff = from a in _context.AcStaffs
+                          select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                acstaff = acstaff.Where(a => a.Name.Contains(searchString)
+                                       || a.Surname.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "Name":
+                    acstaff = acstaff.OrderBy(p => p.Name);
+                    break;
+                case "name_desc":
+                    acstaff = acstaff.OrderByDescending(p => p.Name);
+                    break;
+                case "Surname":
+                    acstaff = acstaff.OrderBy(p => p.Surname);
+                    break;
+                case "surname_desc":
+                    acstaff = acstaff.OrderByDescending(p => p.Surname);
+                    break;
+                case "HireDate":
+                    acstaff = acstaff.OrderBy(p => p.HireDate);
+                    break;
+                case "hiredate_desc":
+                    acstaff = acstaff.OrderByDescending(p => p.HireDate);
+                    break;
+                case "BirthDate":
+                    acstaff = acstaff.OrderBy(p => p.BirthDate);
+                    break;
+                case "birthdate_desc":
+                    acstaff = acstaff.OrderByDescending(p => p.BirthDate);
+                    break;
+                default:
+                    acstaff = acstaff.OrderBy(p => p.Name);
+                    break;
+            }
+            int pageSize = 5;
+            return View(await PaginatedList<AcStaff>.CreateAsync(acstaff.Include(p => p.Branch).AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: AcStaffs/Details/5
@@ -37,7 +99,7 @@ namespace SchoolManagmentSystem.Controllers
             }
 
             var acStaff = await _context.AcStaffs
-                .Include(a => a.Department)
+                .Include(a => a.Branch)
                 .FirstOrDefaultAsync(m => m.AcStaffID == id);
             if (acStaff == null)
             {
@@ -50,7 +112,7 @@ namespace SchoolManagmentSystem.Controllers
         // GET: AcStaffs/Create
         public IActionResult Create()
         {
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name");
+            ViewData["BranchID"] = new SelectList(_context.Branches, "BranchID", "Name");
             return View();
         }
 
@@ -59,15 +121,28 @@ namespace SchoolManagmentSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AcStaffID,Name,Surname,Email,BirthDate,HireDate,Address,DepartmentID")] AcStaff acStaff)
+        public async Task<IActionResult> Create([Bind("AcStaffID,Name,Surname,Email,BirthDate,HireDate,Address,BranchID")] AcStaff acStaff)
         {
-            if (ModelState.IsValid)
+            var user = new ApplicationUser { UserName = acStaff.Email, FirstName = acStaff.Name, LastName = acStaff.Surname, Email = acStaff.Email };
+            var result = await _userManager.CreateAsync(user, "Password.123");
+
+
+            if (result.Succeeded)
             {
+                //assign role to student
+                await _userManager.AddToRoleAsync(user, "Academic Staff");
+
+                // Add the student to the database
                 _context.Add(acStaff);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", acStaff.DepartmentID);
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
             return View(acStaff);
         }
 
@@ -84,7 +159,7 @@ namespace SchoolManagmentSystem.Controllers
             {
                 return NotFound();
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", acStaff.DepartmentID);
+            ViewData["BranchID"] = new SelectList(_context.Branches, "BranchID", "Name", acStaff.BranchID);
             return View(acStaff);
         }
 
@@ -93,7 +168,7 @@ namespace SchoolManagmentSystem.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AcStaffID,Name,Surname,Email,BirthDate,HireDate,Address,DepartmentID")] AcStaff acStaff)
+        public async Task<IActionResult> Edit(int id, [Bind("AcStaffID,Name,Surname,Email,BirthDate,HireDate,Address,BranchID")] AcStaff acStaff)
         {
             if (id != acStaff.AcStaffID)
             {
@@ -120,7 +195,7 @@ namespace SchoolManagmentSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", acStaff.DepartmentID);
+            ViewData["BranchID"] = new SelectList(_context.Branches, "BranchID", "Name", acStaff.BranchID);
             return View(acStaff);
         }
 
@@ -133,7 +208,7 @@ namespace SchoolManagmentSystem.Controllers
             }
 
             var acStaff = await _context.AcStaffs
-                .Include(a => a.Department)
+                .Include(a => a.Branch)
                 .FirstOrDefaultAsync(m => m.AcStaffID == id);
             if (acStaff == null)
             {
@@ -157,14 +232,14 @@ namespace SchoolManagmentSystem.Controllers
             {
                 _context.AcStaffs.Remove(acStaff);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AcStaffExists(int id)
         {
-          return (_context.AcStaffs?.Any(e => e.AcStaffID == id)).GetValueOrDefault();
+            return _context.AcStaffs.Any(e => e.AcStaffID == id);
         }
     }
 }
