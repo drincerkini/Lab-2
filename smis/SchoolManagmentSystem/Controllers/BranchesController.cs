@@ -104,9 +104,22 @@ namespace SchoolManagmentSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BranchID,SMIAL,Name,Location")] Branch branch)
         {
+            var depList = _context.Departments.ToListAsync();
             if (ModelState.IsValid)
             {
                 _context.Add(branch);
+                if (depList != null)
+                {
+                    foreach (var item in await depList)
+                    {
+                        var depBranch = new DeptBranch
+                        {
+                            BranchID = branch.BranchID,
+                            DepartmentID = item.DepartmentID
+                        };
+                        _context.Add(depBranch);
+                    }
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

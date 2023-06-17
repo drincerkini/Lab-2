@@ -15,8 +15,8 @@ namespace SchoolManagmentSystem.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<DeptBranch> DeptBranches { get; set; }
         public DbSet<CourseAssignment> CourseAssignments { get; set; }
-        public DbSet<AcStaff> AcStaffs { get; set; }
         public DbSet<Assistant> Assistants { get; set; }
+        public DbSet<AcStaff> AcStaffs { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }

@@ -185,24 +185,17 @@ namespace SchoolManagmentSystem.Data.Migrations
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProfessorID = table.Column<int>(type: "int", nullable: false),
-                    DepartmentID = table.Column<int>(type: "int", nullable: false)
+                    ProfessorID = table.Column<int>(type: "int", nullable: true),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Assistants", x => x.AssistantID);
                     table.ForeignKey(
-                        name: "FK_Assistants_Departments_DepartmentID",
-                        column: x => x.DepartmentID,
-                        principalTable: "Departments",
-                        principalColumn: "DepartmentID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Assistants_Professors_ProfessorID",
                         column: x => x.ProfessorID,
                         principalTable: "Professors",
                         principalColumn: "ProfessorID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -261,11 +254,6 @@ namespace SchoolManagmentSystem.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AcStaffs_DepartmentID",
                 table: "AcStaffs",
-                column: "DepartmentID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Assistants_DepartmentID",
-                table: "Assistants",
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(

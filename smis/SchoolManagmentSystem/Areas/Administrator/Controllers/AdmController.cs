@@ -62,21 +62,30 @@ namespace SchoolManagmentSystem.Areas.Administrator.Controllers
             return RedirectToAction(nameof(RolesList));
         }
 
-        [HttpDelete]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteRole(string roleName)
         {
             if (!String.IsNullOrEmpty(roleName))
             {
-                if (await _roleManager.RoleExistsAsync(roleName))
+                var role = await _roleManager.FindByNameAsync(roleName);
+                if (role != null)
                 {
-                    var role = await _roleManager.FindByNameAsync(roleName);
-                    await _roleManager.DeleteAsync(role);
+                    var result = await _roleManager.DeleteAsync(role);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction(nameof(RolesList));
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Failed to delete the role.");
+                    }
                 }
             }
 
             return RedirectToAction(nameof(Index));
-
         }
+
 
         public async Task<IActionResult> ListUsers()
         {
@@ -131,6 +140,28 @@ namespace SchoolManagmentSystem.Areas.Administrator.Controllers
             }
             return View(model);
         }
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(ListUsers));
+            }
+            else
+            {
+                ModelState.AddModelError("", "Failed to delete the user.");
+                return View("ListUsers");
+            }
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string userId)
         {

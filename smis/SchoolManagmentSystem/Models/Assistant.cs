@@ -30,7 +30,7 @@ namespace SchoolManagmentSystem.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         [DisplayName("Hire Date")]
-        public DateTime HireDate { get; set; }
+        public DateTime HireDate { get; set; } = DateTime.Today;
 
         public string Address { get; set; }
 
@@ -44,9 +44,6 @@ namespace SchoolManagmentSystem.Models
         [ForeignKey("ProfessorID")]
         public Professor? Professor { get; set; }
 
-        public int DepartmentID { get; set; }
-        [ForeignKey("DepartmentID")]
-        public Department? Department { get; set; }
     }
 }
 

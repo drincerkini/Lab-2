@@ -27,10 +27,10 @@ namespace SchoolManagmentSystem.Models
 
         public Location? Location { get; set; }
 
-
         //relationship
 
         public ICollection<DeptBranch>? DeptBranches { get; set; }
+        public ICollection<AcStaff>? AcStaffs { get; set; }
         //public ICollection<Department> Departments { get; set; }
 
     }

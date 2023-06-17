@@ -1,7 +1,6 @@
-﻿
-@model List<SchoolManagmentSystem.Areas.Administrator.ViewModel.UserRolesViewModel>
+﻿@model List<SchoolManagmentSystem.Areas.Administrator.ViewModel.UserRolesViewModel>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-   
+
 @{
     ViewData["Title"] = "Manage";
     Layout = "_AdminLayout";
@@ -20,6 +19,7 @@
             <th>Email</th>
             <th>Roles</th>
             <th>Action</th>
+            <th>Manage Role</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +30,12 @@
                 <td>@user.LastName</td>
                 <td>@user.Email</td>
                 <td>@string.Join(" , ", user.Roles.ToList())</td>
+                <td>
+                    <form method="post" asp-action="DeleteUser" asp-route-userId="@user.UserId">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
                 <td>
                     <a class="btn btn-primary" asp-controller="Adm" asp-action="Manage" asp-route-userId="@user.UserId">Manage Roles</a>
                 </td>

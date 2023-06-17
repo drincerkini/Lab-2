@@ -1,4 +1,4 @@
-@model SchoolManagmentSystem.Models.Assistant
+﻿@model SchoolManagmentSystem.Models.Assistant
 
 @{
     ViewData["Title"] = "Delete";
@@ -21,13 +21,13 @@
                 <input readonly asp-for="Surname" class="form-control" />
                 <span asp-validation-for="Surname" class="text-danger"></span>
             </div>
-            </div>
-    <form asp-action="Delete" class="text-center" >
-        <input type="hidden" asp-for="AssistantID" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        <button class="btn btn btn-light">
-            <a class="btn btn-ligt text-secondary" asp-action="Index">Back to List</a>
-        </button>
-    </form>
-</div>
+        </div>
+        <form asp-action="Delete" class="text-center">
+            <input type="hidden" asp-for="AssistantID" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <button class="btn btn btn-light">
+                <a class="btn btn-ligt text-secondary" asp-action="Index">Back to List</a>
+            </button>
+        </form>
+    </div>
 </div>
