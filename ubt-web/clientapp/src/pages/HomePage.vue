@@ -1,28 +1,26 @@
 <template>
-  <section id="about-section" class="pt-5 pb-5">
+<section id="about-section" class="pt-5 pb-5">
     
-    <div class="container fluid">
-      <div class="mb-20">
-        <img src="../../public/img/ubtBanner.png" />
-      </div>
+  <div class="container-fluid">
+    <img src="../../public/img/ubtBanner.png" style="width: 100%;"/>
+  </div>
+  
+  <br />
+  <br />
+  <br />
 
-      <br />
-      <br />
-      <br />
-
-      <div>
-        <h2>LAJME</h2>
-        <hr />
-
-        <NewsCardComponent />
-      </div>
-      
-    </div>
-  </section>
+  <div class="container">
+    <div>
+      <h2>LAJME</h2>
+      <hr />
+      <NewsCardComponent />
+    </div>    
+  </div>
+</section>
 </template>
 
 <script>
-import NewsCardComponent from '../components/NewsCardComponent.vue'
+import NewsCardComponent from '../components/NewsComponents/NewsCardComponent.vue'
 
 export default{
   components: { NewsCardComponent }

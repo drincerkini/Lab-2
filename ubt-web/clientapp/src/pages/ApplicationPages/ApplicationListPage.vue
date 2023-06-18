@@ -6,7 +6,7 @@
 
 
 <script>
-import ApplicationTableComponent from '../components/ApplicationTableComponent'
+import ApplicationTableComponent from '../../components/ApplicationComponents/ApplicationTableComponent'
 
 export default {
     components: {

@@ -2,17 +2,12 @@ import Home from "../pages/HomePage.vue";
 import Register from "../pages/RegisterPage.vue";
 import Login from "../pages/LoginPage.vue";
 import CreateNewsPage from '../pages/CreateNewsPage.vue'
-import CreateDepartmentPage from '../pages/CreateDepartmentPage.vue'
-import DepartmentCardComponent from '../pages/DepartmentPage.vue'
-import BranchPage from '../pages/BranchPage.vue'
-import CreateBranchPage from '../pages/CreateBranchPage.vue'
-import ProfessorPage from '../pages/ProfessorPage.vue'
-import CreateProfessorPage from '../pages/CreateProfessorPage.vue'
-import ApplicationPage from '../pages/ApplicationPage.vue'
-import ContactPage from '../pages/ContactPage.vue'
+import ApplicationPage from '../pages//ApplicationPages/ApplicationPage.vue'
+import ContactPage from '../pages/ContactPages/ContactPage.vue'
 import AdminDashboardPage from '../pages/AdminDashboardPage.vue'
-import ContactListPage from '../pages/ContactListPage.vue'
-import ApplicationListPage from '../pages/ApplicationListPage.vue'
+import ContactListPage from '../pages/ContactPages/ContactListPage.vue'
+import ApplicationListPage from '../pages/ApplicationPages/ApplicationListPage.vue'
+import AboutPage from '../pages/AboutPage.vue'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
@@ -29,42 +24,6 @@ const routes = [
     path: "/create-news",
     name: "create-news",
     component: CreateNewsPage
-  },
-
-  {
-    path: "/create-department",
-    name: "create-department",
-    component: CreateDepartmentPage
-  },
-
-  {
-    path: "/departments",
-    name: "departments",
-    component: DepartmentCardComponent
-  },
-
-  {
-    path: "/branches",
-    name: "branches",
-    component: BranchPage
-  },
-
-  {
-    path: "/create-branch",
-    name: "create-branch",
-    component: CreateBranchPage
-  },
-
-  {
-    path: "/create-professor",
-    name: "create-professor",
-    component: CreateProfessorPage
-  },
-
-  {
-    path: "/professors",
-    name: "professors",
-    component: ProfessorPage
   },
 
   {
@@ -89,6 +48,12 @@ const routes = [
     path: "/contact-list",
     name: "contact-list",
     component: ContactListPage
+  },
+
+  {
+    path: "/about",
+    name: "about",
+    component: AboutPage
   },
 
   {

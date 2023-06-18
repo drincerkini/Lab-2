@@ -6,7 +6,7 @@
 
 
 <script>
-import ContactFormComponent from '../components/ContactFormComponent'
+import ContactFormComponent from '../../components/ContactComponents/ContactFormComponent.vue'
 
 export default {
     components: {
