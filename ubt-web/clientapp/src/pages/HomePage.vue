@@ -1,7 +1,7 @@
 <template>
 <section id="about-section" class="pt-5 pb-5">
     
-  <div class="container-fluid">
+  <div >
     <img src="../../public/img/ubtBanner.png" style="width: 100%;"/>
   </div>
   
@@ -16,6 +16,14 @@
       <NewsCardComponent />
     </div>    
   </div>
+
+
+  <div class="aplikimiBanner">
+    <h1 class="titulli fs-10 fw-bold text-light mt-0 pt-0">UBT</h1>
+    <h4 class="font-monospace fs-1 text-light fw-bolder m-3 p-3">"Zgjedh më të mirin që të bëhesh më i miri"</h4>
+    <button class="butoni"><router-link to="/application" class="text-dark" style="text-decoration: none;">APLIKO ONLINE</router-link></button>
+  </div>
+
 </section>
 </template>
 
@@ -31,6 +39,30 @@ export default{
 body {
   background-color: #eee;
   margin-top: 20px;
+}
+
+.aplikimiBanner{
+  width: 100%;
+  height: 400px;
+  background-color: #063970;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.titulli{
+  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  color: #848484;
+}
+
+.butoni{
+  width: 600px;
+  height: 60px;
+  color: #eeeee4;
 }
 
 .media.media-news {

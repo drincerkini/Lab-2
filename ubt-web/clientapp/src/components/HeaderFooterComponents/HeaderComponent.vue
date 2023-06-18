@@ -47,25 +47,33 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <router-link to="/"  class="nav-link fs-4 m-3" >UBT</router-link>
-        </li>
-
-        <li class="nav-item"  v-for="route in routes" v-bind:key="route.name">
+        <li class="nav-item linkHover"  v-for="route in routes" v-bind:key="route.name">
           <router-link v-bind:to="route.path" class="nav-link fs-4 m-3" >{{ route.name }}</router-link>
         </li>
       </ul>
       <div class="d-flex " style="margin-right: 90px;">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               E-Shërbimet
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="https://mail.google.com/mail/u/0/#inbox">Mail</a></li>
-              <li><a class="dropdown-item" href="/">SMIS</a></li>
-              <li><a class="dropdown-item" href="https://moodle.ubt-uni.net/login/index.php">Moodle</a></li>
-              <li><a class="dropdown-item" href="https://branch.ubt-uni.net/TV/ScheduleIndex.aspx">Student (Grupet, Orari)</a></li>
+              <li><a class="dropdown-item" href="https://mail.google.com/mail/u/0/#inbox">
+                <img src="../../../public/img/gmail.png" style="width: 30px; height: 20px;" />
+                Mail
+              </a></li>
+              <li><a class="dropdown-item" href="https://localhost:7179/">
+                <img src="../../../public/img/ubt.png" style="width: 25px; height: 25px;" />
+                SMIS
+              </a></li>
+              <li><a class="dropdown-item" href="https://moodle.ubt-uni.net/login/index.php">
+                <img src="../../../public/img/moodle.png" style="width: 25px; height: 25px;" />
+                Moodle
+              </a></li>
+              <li><a class="dropdown-item" href="https://branch.ubt-uni.net/TV/ScheduleIndex.aspx">
+                <img src="../../../public/img/ubt.png" style="width: 25px; height: 25px;" />
+                Student (Grupet, Orari)
+              </a></li>
               <li><hr class="dropdown-divider"></li>
               <li><router-link class="dropdown-item" to="/login">Login</router-link></li>
               <li><router-link class="dropdown-item" to="/register">Register</router-link></li>
@@ -118,12 +126,18 @@ export default {
   data() {
     return {
       routes: [
-        { path: "/", name: "Home" },
-        { path: "/about", name: "About" },
-        { path: "/contact", name: "Contact" },
-        { path: "/dashboard", name: "Dashboard" }
+        { path: "/", name: "UBT" },
+        { path: "/about", name: "ABOUT" },
+        { path: "/contact", name: "CONTACT" },
+        { path: "/dashboard", name: "DASHBOARD" }
       ],
     }
   }
 }
 </script>
+
+<style scoped>
+.linkHover:hover{
+  background-color: #eeeee4;
+}
+</style>

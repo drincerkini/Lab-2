@@ -7,6 +7,8 @@
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
     rel="stylesheet"
   />
+
+  <h1 class="fs-1 fw-bold text-dark text-center font-monospace pt-0 pb-5">WELCOME ADMINISTRATOR</h1>
   <div class="container bootstrap snippets bootdey">
     <div class="row">
 
