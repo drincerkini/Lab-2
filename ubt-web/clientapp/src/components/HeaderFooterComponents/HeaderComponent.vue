@@ -40,7 +40,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <img src="../../public/img/ubt.png" data-holder-rendered="true" style="width: 95px; height: 100px; margin-left: 250px;">
+    <img src="../../../public/img/ubt.png" data-holder-rendered="true" style="width: 95px; height: 100px; margin-left: 250px;">
     <!-- <a class="navbar-brand" href="#">Navbar</a> -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -59,7 +59,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              E-SHERBIMET
+              E-Shërbimet
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="https://mail.google.com/mail/u/0/#inbox">Mail</a></li>
@@ -74,13 +74,13 @@
         </ul>
       </div>
       <div class="d-flex" role="search">
-              <div v-if="this.user" id="main-nav" class="collapse navbar-collapse">
-                  <div class="nav-item nav-link me-4">
-                    Hello {{ $store.state.userModule.user.displayName }} !
-                  </div>
-                  
-                  <a href="#" @click.prevent="handleLogOut" type="button" class="nav-item nav-link btn btn-danger p-2 text-white"> <i class="fa fa-sign-out"></i> Logout</a>
-              </div>
+        <div v-if="this.user" id="main-nav" class="collapse navbar-collapse">
+            <div class="nav-item nav-link me-4">
+              Hello {{ $store.state.userModule.user.displayName }} !
+            </div>
+            
+            <a href="#" @click.prevent="handleLogOut" type="button" class="nav-item nav-link btn btn-danger p-2 text-white"> <i class="fa fa-sign-out"></i> Logout</a>
+        </div>
       </div>
     </div>
   </div>

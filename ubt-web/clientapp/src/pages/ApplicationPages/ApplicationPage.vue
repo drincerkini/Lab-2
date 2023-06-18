@@ -6,7 +6,7 @@
 
 
 <script>
-import ApplicationFormComponent from '../components/ApplicationFormComponent'
+import ApplicationFormComponent from '../../components/ApplicationComponents/ApplicationFormComponent'
 
 export default {
     components: {

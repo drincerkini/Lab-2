@@ -6,7 +6,7 @@
 
 
 <script>
-import ContactTableComponent from '../components/ContactTableComponent'
+import ContactTableComponent from '../../components/ContactComponents/ContactTableComponent.vue'
 
 export default {
     components: {

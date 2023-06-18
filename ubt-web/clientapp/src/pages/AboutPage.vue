@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import AbouUsComponent from '../components/About/AboutUsCompunent'
-import AboutOurUniComponent from '../components/About/AboutOurUniComponent'
+import AbouUsComponent from '../components/AboutComponents/AboutUsCompunent'
+import AboutOurUniComponent from '../components/AboutComponents/AboutOurUniComponent'
 
 export default {
     components: {

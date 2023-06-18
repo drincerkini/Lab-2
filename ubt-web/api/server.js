@@ -11,11 +11,6 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import multer from "multer";
 import newsRouter from './routes/newsRouter';
-import branchRouter from './routes/branchRouter';
-import departmentRouter from './routes/departmentRouter';
-import professorRouter from './routes/professorRouter';
-import assistantRouter from './routes/assistantRouter';
-import coursesRouter from './routes/coursesRouter';
 import applicationRouter from './routes/applicationRouter';
 import contactRouter from './routes/contactRouter';
 
@@ -57,19 +52,6 @@ mongoose
 
     app.use("/contact", contactRouter);
 
-
-    app.use("/branches", upload.single("image"), branchRouter);
-
-    app.use("/departments", upload.single("image"), departmentRouter);
-
-    app.use("/professors", upload.single("image"), professorRouter);
-
-    app.use("/assistants", upload.single("image"), assistantRouter);
-
-    app.use("/courses", upload.single("image"), coursesRouter);
-
-    
-   
 
     app.get("*", (req, res) => {
       res.json({ msg: "Not Found" });
