@@ -13,6 +13,7 @@ import ContactPage from '../pages/ContactPage.vue'
 import AdminDashboardPage from '../pages/AdminDashboardPage.vue'
 import ContactListPage from '../pages/ContactListPage.vue'
 import ApplicationListPage from '../pages/ApplicationListPage.vue'
+import AboutPage from '../pages/AboutPage.vue'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
@@ -89,6 +90,12 @@ const routes = [
     path: "/contact-list",
     name: "contact-list",
     component: ContactListPage
+  },
+
+  {
+    path: "/about",
+    name: "about",
+    component: AboutPage
   },
 
   {
