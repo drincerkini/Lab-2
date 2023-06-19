@@ -53,15 +53,21 @@
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Professors" asp-action="Index">Professors</a>
                                     </li>
-                                    <li>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Students</a>
-                                    </li>
+                                    @if (!User.IsInRole("Student") )
+                                    {
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Students</a>
+                                        </li>
+                                    }
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Assistants" asp-action="Index">Assistants</a>
                                     </li>
-                                    <li>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="AcStaffs" asp-action="Index">Academic Staff</a>
-                                    </li>
+                                    @if (!User.IsInRole("Student"))
+                                    {
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="AcStaffs" asp-action="Index">Academic Staff</a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
 
