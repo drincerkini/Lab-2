@@ -16,6 +16,7 @@ import departmentRouter from './routes/departmentRouter';
 import professorRouter from './routes/professorRouter';
 import assistantRouter from './routes/assistantRouter';
 import coursesRouter from './routes/coursesRouter';
+import activityRouter from './routes/ActivityRouter';
 
 mongoose
   .connect(`${MONGO_CONECTION_URI}:${MONGO_PORT}/${MONGO_DB_NAME}`)
@@ -60,6 +61,8 @@ mongoose
     app.use("/assistants", upload.single("image"), assistantRouter);
 
     app.use("/courses", upload.single("image"), coursesRouter);
+
+    app.use("/activities",upload.single("image"), activityRouter);
 
     
    
