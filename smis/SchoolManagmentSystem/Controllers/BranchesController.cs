@@ -218,5 +218,20 @@ namespace SchoolManagmentSystem.Controllers
         {
             return _context.Branches.Any(e => e.BranchID == id);
         }
+        [AllowAnonymous]
+        public async Task<IActionResult> BranchDeptList(int? id)
+        {
+            var course = await _context.Branches
+                .Include(c => c.DeptBranches)
+                .ThenInclude(e => e.Department)
+                .FirstOrDefaultAsync(c => c.BranchID == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return View(course);
+        }
     }
 }

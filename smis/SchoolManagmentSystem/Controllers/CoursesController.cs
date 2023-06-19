@@ -212,5 +212,36 @@ namespace SchoolManagmentSystem.Controllers
         {
             return (_context.Courses?.Any(e => e.CourseID == id)).GetValueOrDefault();
         }
+        [AllowAnonymous]
+        public async Task<IActionResult> CourseStudentsList(int? id)
+        {
+            var course = await _context.Courses
+                .Include(c => c.Enrollments)
+                .ThenInclude(e => e.Student)
+                .FirstOrDefaultAsync(c => c.CourseID == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return View(course);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> CourseProfessorsList(int? id)
+        {
+            var course = await _context.Courses
+                .Include(c => c.CourseAssignments)
+                .ThenInclude(e => e.Professor)
+                .FirstOrDefaultAsync(c => c.CourseID == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return View(course);
+        }
     }
 }

@@ -164,14 +164,14 @@ namespace SchoolManagmentSystem.Controllers
             {
                 _context.CourseAssignments.Remove(courseAssignment);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CourseAssignmentExists(int id)
         {
-          return _context.CourseAssignments.Any(e => e.CourseAssignmentID == id);
+            return _context.CourseAssignments.Any(e => e.CourseAssignmentID == id);
         }
     }
 }
