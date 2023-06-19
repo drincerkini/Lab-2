@@ -1,6 +1,13 @@
 import Home from "../pages/HomePage.vue";
 import Register from "../pages/RegisterPage.vue";
 import Login from "../pages/LoginPage.vue";
+import CreateNewsPage from '../pages/CreateNewsPage.vue'
+import ApplicationPage from '../pages//ApplicationPages/ApplicationPage.vue'
+import ContactPage from '../pages/ContactPages/ContactPage.vue'
+import AdminDashboardPage from '../pages/AdminDashboardPage.vue'
+import ContactListPage from '../pages/ContactPages/ContactListPage.vue'
+import ApplicationListPage from '../pages/ApplicationPages/ApplicationListPage.vue'
+import AboutPage from '../pages/AboutPage.vue'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
@@ -10,10 +17,49 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home,
-    meta: {
-      isUser: true,
-    },
+    component: Home
+  },
+
+  {
+    path: "/create-news",
+    name: "create-news",
+    component: CreateNewsPage
+  },
+
+  {
+    path: "/application",
+    name: "application",
+    component: ApplicationPage
+  },
+
+  {
+    path: "/application-list",
+    name: "application-list",
+    component: ApplicationListPage
+  },
+
+  {
+    path: "/contact",
+    name: "contact",
+    component: ContactPage
+  },
+
+  {
+    path: "/contact-list",
+    name: "contact-list",
+    component: ContactListPage
+  },
+
+  {
+    path: "/about",
+    name: "about",
+    component: AboutPage
+  },
+
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: AdminDashboardPage
   },
 
   {

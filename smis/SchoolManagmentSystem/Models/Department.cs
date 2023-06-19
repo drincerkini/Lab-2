@@ -13,7 +13,8 @@ namespace SchoolManagmentSystem.Models
         public string Name { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime CreatedDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
+        public DateTime CreatedDate { get; set; } = DateTime.Today;
 
 
         //relationships
@@ -22,9 +23,6 @@ namespace SchoolManagmentSystem.Models
 
         public ICollection<Professor>? Professors { get; set; }
 
-        public ICollection<Assistant>? Assistants { get; set; }
-
-        public ICollection<AcStaff>? AcStaffs { get; set; }
 
         //M-M
         public ICollection<DeptBranch>? DeptBranches { get; set; }

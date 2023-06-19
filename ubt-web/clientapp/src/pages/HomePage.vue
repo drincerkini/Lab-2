@@ -1,68 +1,29 @@
 <template>
-<CaruselComponent />
-  <section id="about-section" class="pt-5 pb-5">
+<section id="about-section" class="pt-5 pb-5">
     
-    <div class="container wrapabout">
-      
-      <br />
-      <br />
-        <div class="text-center mb-2-3 mb-lg-6">
-            <h2 class="h1 mb-5 text-secondary">Latest News  </h2>
-        </div>
-      <br />
-      <br />
-      <br />
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-xl-6 col-12 mb-5 mb-xl-0" v-for="info in this.news" :key="info._id">
-            <div class="media media-news">
-              <div class="media-img">
-                <img :src="`/uploads/${info.image.filename}`" alt="Generic placeholder image">
-              </div>
-              <div class="media-body">
-                <span class="media-date">{{info.createdAt}}</span>
-                <h5 class="mt-0 sep">{{info.title}}</h5>
-                <p>{{info.description}}</p>
-                <a href="blog-post-right-sidebar.html" class="btn btn-transparent">View More</a>
-              </div>
-            </div>
-            <br />
-      <button class="btn btn-danger" v-on:click="handleDelete(news._id)">Delete</button>
-          </div>
+  <div class="container-fluid">
+    <img src="../../public/img/ubtBanner.png" style="width: 100%;"/>
+  </div>
+  
+  <br />
+  <br />
+  <br />
 
-
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="container">
+    <div>
+      <h2>LAJME</h2>
+      <hr />
+      <NewsCardComponent />
+    </div>    
+  </div>
+</section>
 </template>
 
 <script>
-import CaruselComponent from '@/components/CaruselComponent.vue';
-import { mapState } from 'vuex';
+import NewsCardComponent from '../components/NewsComponents/NewsCardComponent.vue'
 
-export default {
-  components: {
-    CaruselComponent,
-  },
-
-  computed: {
-    ...mapState('newsModule', ['news'])
-  },
-  created() {
-    this.$store.dispatch('newsModule/getNews');
-  },
-  methods: {
-    async handleDelete(teamId) {
-      if (window.confirm("Do you really want to delete?")) {
-        try {
-          this.$store.dispatch('deleteNews', teamId);
-        } catch (err) {
-          console.log("erro", err.message);
-        }
-      }
-    }
-  }
+export default{
+  components: { NewsCardComponent }
 }
 </script>
 

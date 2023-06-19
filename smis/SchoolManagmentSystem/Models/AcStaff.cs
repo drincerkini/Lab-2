@@ -1,7 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
+using System.Xml.Linq;
 
 namespace SchoolManagmentSystem.Models
 {
@@ -30,7 +30,7 @@ namespace SchoolManagmentSystem.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         [DisplayName("Hire Date")]
-        public DateTime HireDate { get; set; }
+        public DateTime HireDate { get; set; } = DateTime.Today;
 
         public string Address { get; set; }
 
@@ -41,10 +41,8 @@ namespace SchoolManagmentSystem.Models
         }
 
         //relationship
-        public int DepartmentID { get; set; }
-
-        [ForeignKey("DepartmentID")]
-        public Department? Department { get; set; }
+        public int BranchID { get; set; }
+        [ForeignKey("BranchID")]
+        public Branch? Branch { get; set; }
     }
 }
-

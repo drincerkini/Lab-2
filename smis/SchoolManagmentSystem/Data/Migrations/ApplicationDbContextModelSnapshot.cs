@@ -174,7 +174,7 @@ namespace SchoolManagmentSystem.Data.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DepartmentID")
+                    b.Property<int>("BranchID")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -196,9 +196,9 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasKey("AcStaffID");
 
-                    b.HasIndex("DepartmentID");
+                    b.HasIndex("BranchID");
 
-                    b.ToTable("AcStaffs", (string)null);
+                    b.ToTable("AcStaffs");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.ApplicationUser", b =>
@@ -289,9 +289,6 @@ namespace SchoolManagmentSystem.Data.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DepartmentID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -314,11 +311,9 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasKey("AssistantID");
 
-                    b.HasIndex("DepartmentID");
-
                     b.HasIndex("ProfessorID");
 
-                    b.ToTable("Assistants", (string)null);
+                    b.ToTable("Assistants");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Branch", b =>
@@ -342,7 +337,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasKey("BranchID");
 
-                    b.ToTable("Branches", (string)null);
+                    b.ToTable("Branches");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Course", b =>
@@ -368,7 +363,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.CourseAssignment", b =>
@@ -391,7 +386,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("ProfessorID");
 
-                    b.ToTable("CourseAssignments", (string)null);
+                    b.ToTable("CourseAssignments");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Department", b =>
@@ -412,7 +407,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasKey("DepartmentID");
 
-                    b.ToTable("Departments", (string)null);
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.DeptBranch", b =>
@@ -435,7 +430,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("DeptBranches", (string)null);
+                    b.ToTable("DeptBranches");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Enrollment", b =>
@@ -461,7 +456,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("Enrollments", (string)null);
+                    b.ToTable("Enrollments");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Professor", b =>
@@ -503,7 +498,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Professors", (string)null);
+                    b.ToTable("Professors");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Student", b =>
@@ -545,7 +540,7 @@ namespace SchoolManagmentSystem.Data.Migrations
 
                     b.HasIndex("DepartmentID");
 
-                    b.ToTable("Students", (string)null);
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -601,30 +596,22 @@ namespace SchoolManagmentSystem.Data.Migrations
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.AcStaff", b =>
                 {
-                    b.HasOne("SchoolManagmentSystem.Models.Department", "Department")
+                    b.HasOne("SchoolManagmentSystem.Models.Branch", "Branch")
                         .WithMany("AcStaffs")
-                        .HasForeignKey("DepartmentID")
+                        .HasForeignKey("BranchID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Department");
+                    b.Navigation("Branch");
                 });
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Assistant", b =>
                 {
-                    b.HasOne("SchoolManagmentSystem.Models.Department", "Department")
-                        .WithMany("Assistants")
-                        .HasForeignKey("DepartmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SchoolManagmentSystem.Models.Professor", "Professor")
                         .WithMany("Assistants")
                         .HasForeignKey("ProfessorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Department");
 
                     b.Navigation("Professor");
                 });
@@ -721,6 +708,8 @@ namespace SchoolManagmentSystem.Data.Migrations
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Branch", b =>
                 {
+                    b.Navigation("AcStaffs");
+
                     b.Navigation("DeptBranches");
                 });
 
@@ -731,10 +720,6 @@ namespace SchoolManagmentSystem.Data.Migrations
 
             modelBuilder.Entity("SchoolManagmentSystem.Models.Department", b =>
                 {
-                    b.Navigation("AcStaffs");
-
-                    b.Navigation("Assistants");
-
                     b.Navigation("Courses");
 
                     b.Navigation("DeptBranches");

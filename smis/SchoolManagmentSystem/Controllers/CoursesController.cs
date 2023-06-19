@@ -74,6 +74,25 @@ namespace SchoolManagmentSystem.Controllers
             }
         }
 
+        // GET: Assistants/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.Courses == null)
+            {
+                return NotFound();
+            }
+
+            var assistant = await _context.Courses
+                .Include(c => c.Department)
+                .FirstOrDefaultAsync(m => m.DepartmentID == id);
+            if (assistant == null)
+            {
+                return NotFound();
+            }
+
+            return View(assistant);
+        }
+
         // GET: Courses/Create
         public IActionResult Create()
         {

@@ -30,7 +30,7 @@ namespace SchoolManagmentSystem.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         [DisplayName("Register Date")]
-        public DateTime RegisterDate { get; set; }
+        public DateTime RegisterDate { get; set; } = DateTime.Today;
 
         public string Address { get; set; }
         [Display(Name = "Full Name")]

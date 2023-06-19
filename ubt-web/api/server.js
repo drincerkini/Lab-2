@@ -10,6 +10,9 @@ import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import multer from "multer";
+import newsRouter from './routes/newsRouter';
+import applicationRouter from './routes/applicationRouter';
+import contactRouter from './routes/contactRouter';
 
 mongoose
   .connect(`${MONGO_CONECTION_URI}:${MONGO_PORT}/${MONGO_DB_NAME}`)
@@ -43,7 +46,12 @@ mongoose
 
     // API Routes....
 
-   
+    app.use("/news", upload.single("image"), newsRouter);
+
+    app.use("/application", applicationRouter);
+
+    app.use("/contact", contactRouter);
+
 
     app.get("*", (req, res) => {
       res.json({ msg: "Not Found" });
