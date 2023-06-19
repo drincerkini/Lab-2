@@ -61,6 +61,8 @@
                     @Html.DisplayFor(modelItem => item.Location)
                 </td>
                 <td>
+                    <a class="btn btn-ligt text-secondary" asp-action="BranchDeptList" asp-route-id="@item.BranchID">Departments</a>
+
                     @if (User.IsInRole("Admin"))
                     {
                         <a class="btn btn-ligt text-secondary" asp-action="Edit" asp-route-id="@item.BranchID">Edit</a>
