@@ -40,7 +40,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <img src="../../../public/img/ubt.png" data-holder-rendered="true" style="width: 95px; height: 100px; margin-left: 250px;">
+    <img src="../../../public/img/dft.png" data-holder-rendered="true" style="width: 95px; height: 100px; margin-left: 250px;">
     <!-- <a class="navbar-brand" href="#">Navbar</a> -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
