@@ -12,7 +12,7 @@ using SchoolManagmentSystem.Models;
 
 namespace SchoolManagmentSystem.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Academic Staff, Professor ")]
     public class CourseAssignmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -164,14 +164,14 @@ namespace SchoolManagmentSystem.Controllers
             {
                 _context.CourseAssignments.Remove(courseAssignment);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CourseAssignmentExists(int id)
         {
-          return _context.CourseAssignments.Any(e => e.CourseAssignmentID == id);
+            return _context.CourseAssignments.Any(e => e.CourseAssignmentID == id);
         }
     }
 }

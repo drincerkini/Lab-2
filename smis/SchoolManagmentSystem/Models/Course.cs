@@ -22,6 +22,6 @@ namespace SchoolManagmentSystem.Models
         [ForeignKey("DepartmentID")]
         public Department? Department { get; set; }
         public ICollection<Enrollment>? Enrollments { get; }
-        // public ICollection<Professor>? Professors { get; }
+        public ICollection<CourseAssignment>? CourseAssignments { get; }
     }
 }

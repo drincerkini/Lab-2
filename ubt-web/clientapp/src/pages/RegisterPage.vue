@@ -34,14 +34,14 @@
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <button  type="submit" class="btn px-4 text-white" style="background-color: #008F8C" >Register</button>
+                    <button  type="submit" class="btn px-4 text-white" style="background-color: #063970" >Register</button>
                   </div>
                 </div>
               </form>
 
             </div>
           </div>
-          <div class="card text-white py-5 d-md-down-none" style="width:44%; background-color: #008F8C" >
+          <div class="card text-white py-5 d-md-down-none" style="width:44%; background-color: #063970" >
             <div class="card-body text-center">
               <div>
                 <h2>Login </h2>

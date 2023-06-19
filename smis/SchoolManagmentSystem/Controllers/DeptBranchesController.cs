@@ -12,7 +12,8 @@ using SchoolManagmentSystem.Models;
 
 namespace SchoolManagmentSystem.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Academic Staff, Professor ")]
+
     public class DeptBranchesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -164,14 +165,14 @@ namespace SchoolManagmentSystem.Controllers
             {
                 _context.DeptBranches.Remove(deptBranch);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DeptBranchExists(int id)
         {
-          return _context.DeptBranches.Any(e => e.DeptBranchID == id);
+            return _context.DeptBranches.Any(e => e.DeptBranchID == id);
         }
     }
 }

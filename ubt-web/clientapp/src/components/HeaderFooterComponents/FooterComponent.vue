@@ -25,6 +25,7 @@
                 <ul>
                   <li><a href="/about">About Us</a></li>
                   <li><a href="">Terms &amp; Policy</a></li>
+                  <li><a href="/application">Apply Now</a></li>
                 </ul>
               </div>
             </div>

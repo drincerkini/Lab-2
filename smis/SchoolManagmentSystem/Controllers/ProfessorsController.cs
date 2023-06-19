@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,15 +12,20 @@ using SchoolManagmentSystem.Models;
 
 namespace SchoolManagmentSystem.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Academic Staff, Professor ")]
+
     public class ProfessorsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ProfessorsController(ApplicationDbContext context)
+
+        public ProfessorsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
 
         [AllowAnonymous]
         // GET: Professors
@@ -121,15 +127,27 @@ namespace SchoolManagmentSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProfessorID,Name,Surname,Email,BirthDate,HireDate,Address,DepartmentID")] Professor professor)
         {
-            if (ModelState.IsValid)
+            var user = new ApplicationUser { UserName = professor.Email, FirstName = professor.Name, LastName = professor.Surname, Email = professor.Email };
+            var result = await _userManager.CreateAsync(user, "Password.123");
+
+
+            if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "Professor");
+
                 _context.Add(professor);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
+            }
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
             }
             ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "Name", professor.DepartmentID);
             return View(professor);
         }
+
 
         // GET: Professors/Edit/5
         public async Task<IActionResult> Edit(int? id)
