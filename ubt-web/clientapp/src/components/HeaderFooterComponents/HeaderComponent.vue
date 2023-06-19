@@ -50,6 +50,9 @@
         <li class="nav-item linkHover"  v-for="route in routes" v-bind:key="route.name">
           <router-link v-bind:to="route.path" class="nav-link fs-4 m-3" >{{ route.name }}</router-link>
         </li>
+        <li class="nav-item me-auto mb-2 mb-lg-0" v-if="this.user">
+          <router-link to="/dashboard" class="nav-link fs-4 m-3" >DASHBOARD</router-link>
+        </li>
       </ul>
       <div class="d-flex " style="margin-right: 90px;">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -129,8 +132,7 @@ export default {
         { path: "/", name: "UBT" },
         { path: "/about", name: "ABOUT" },
         { path: "/activities", name: "HULUMTIME & INOVACIONE" },
-        { path: "/contact", name: "CONTACT" },
-        { path: "/dashboard", name: "DASHBOARD" }
+        { path: "/contact", name: "CONTACT" }
       ],
     }
   }
