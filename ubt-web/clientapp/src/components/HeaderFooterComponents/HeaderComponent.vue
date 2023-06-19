@@ -128,6 +128,7 @@ export default {
       routes: [
         { path: "/", name: "UBT" },
         { path: "/about", name: "ABOUT" },
+        { path: "/activities", name: "HULUMTIME & INOVACIONE" },
         { path: "/contact", name: "CONTACT" },
         { path: "/dashboard", name: "DASHBOARD" }
       ],

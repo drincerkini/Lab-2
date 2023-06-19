@@ -16,6 +16,8 @@
 
       <CardComponent title="APPLICATIONS" :numberOf="this.numberOfApplications" pathOf="/application-list" color="panel panel-danger panel-colorful"/>
 
+      <CardComponent title="ACTIVITIES" :numberOf="this.numberOfActivities" pathOf="/create-activities" color="panel panel-dark panel-colorful"/>
+
       <CardComponent title="CONTACTS" :numberOf="this.numberOfContacts" pathOf="/contact-list" color="panel panel-info panel-colorful"/>
       
     </div>
@@ -39,6 +41,8 @@ export default {
   computed: {
     ...mapState("applicationModule", ["applications"]),
     ...mapGetters("applicationModule", ["numberOfApplications"]),
+    ...mapState("activityModule", ["activities"]),
+    ...mapGetters("activityModule", ["numberOfActivities"]),
     ...mapState("contactModule", ["contacts"]),
     ...mapGetters("contactModule", ["numberOfContacts"]),
     ...mapState("newsModule", ["news"]),

@@ -13,6 +13,7 @@ import multer from "multer";
 import newsRouter from './routes/newsRouter';
 import applicationRouter from './routes/applicationRouter';
 import contactRouter from './routes/contactRouter';
+import activityRouter from './routes/ActivityRouter';
 
 mongoose
   .connect(`${MONGO_CONECTION_URI}:${MONGO_PORT}/${MONGO_DB_NAME}`)
@@ -51,6 +52,8 @@ mongoose
     app.use("/application", applicationRouter);
 
     app.use("/contact", contactRouter);
+
+    app.use("/activities", upload.single("image"), activityRouter);
 
 
     app.get("*", (req, res) => {

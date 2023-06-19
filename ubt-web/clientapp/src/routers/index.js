@@ -8,6 +8,8 @@ import AdminDashboardPage from '../pages/AdminDashboardPage.vue'
 import ContactListPage from '../pages/ContactPages/ContactListPage.vue'
 import ApplicationListPage from '../pages/ApplicationPages/ApplicationListPage.vue'
 import AboutPage from '../pages/AboutPage.vue'
+import ActivityPage from '../pages/ActivityPages/ActivityPage.vue'
+import CreateActivityPage from '../pages/ActivityPages/CreateActivityPage.vue'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
@@ -37,6 +39,19 @@ const routes = [
     name: "application-list",
     component: ApplicationListPage
   },
+
+  {
+    path: "/activities",
+    name: "activities",
+    component: ActivityPage
+  },
+
+  {
+    path: "/create-activities",
+    name: "create-activities",
+    component: CreateActivityPage
+  },
+
 
   {
     path: "/contact",
