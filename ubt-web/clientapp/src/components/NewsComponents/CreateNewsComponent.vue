@@ -16,19 +16,23 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-6 mb-3">
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <input id="description" v-model="this.description" type="text" class="form-control"
-                                        placeholder="Description " />
-                                </div>
-                            </div>
+                           
 
                             <div class="col-sm-6 mb-3">
                                 <div class="form-group">
                                     <label for="phone">Select Image</label>
                                     <input class="form-control" id="image" ref="imageInput" type="file"
                                         @change="handleImageChange">
+                                </div>
+                            </div>
+                             <div class="col-sm-12 mb-3">
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <div class="controls">
+                                        <textarea placeholder="Your Title"
+                                            class="form-control requiredField Highlighted-label" rows="6"
+                                            id="description" v-model="this.description">...</textarea>
+                                    </div>
                                 </div>
                             </div>
 

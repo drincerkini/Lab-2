@@ -2,7 +2,7 @@
 <section id="about-section" class="pt-5 pb-5">
     
   <div >
-    <img src="../../public/img/ubtBanner.png" style="width: 100%;"/>
+    <img src="../../public/img/impactbanner.png" style="width: 100%;"/>
   </div>
   
   <br />
@@ -19,19 +19,24 @@
 
 
   <div class="aplikimiBanner">
-    <h1 class="titulli fs-10 fw-bold text-light mt-0 pt-0">UBT</h1>
+    <h1 class="titulli fs-10 fw-bold text-light mt-0 pt-0">DFT University </h1>
     <h4 class="font-monospace fs-1 text-light fw-bolder m-3 p-3">"Zgjedh më të mirin që të bëhesh më i miri"</h4>
     <button class="butoni"><router-link to="/application" class="text-dark" style="text-decoration: none;">APLIKO ONLINE</router-link></button>
   </div>
+
+    <h1 class="titulli fs-10 fw-bold text-dark text-center m-3 p-3 font-monospace">BE PART OF US! </h1>
+<CaruselComponent />
+
 
 </section>
 </template>
 
 <script>
 import NewsCardComponent from '../components/NewsComponents/NewsCardComponent.vue'
+import CaruselComponent from '../components/CaruselComponent'
 
 export default{
-  components: { NewsCardComponent }
+  components: { NewsCardComponent,CaruselComponent }
 }
 </script>
 
@@ -44,7 +49,7 @@ body {
 .aplikimiBanner{
   width: 100%;
   height: 400px;
-  background-color: #063970;
+  background-color: #95AD84;
   display: flex;
   flex-direction: column;
   justify-content: center;
