@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,14 +12,17 @@ using SchoolManagmentSystem.Models;
 
 namespace SchoolManagmentSystem.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Academic Staff, Professor ")]
+
     public class StudentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public StudentsController(ApplicationDbContext context)
+        public StudentsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [AllowAnonymous]
@@ -118,15 +122,28 @@ namespace SchoolManagmentSystem.Controllers
         // POST: Students/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentID,Name,Surname,Email,BirthDate,RegisterDate,Address, DepartmentID")] Student student)
+
         {
-            if (ModelState.IsValid)
+            var user = new ApplicationUser { UserName = student.Email, FirstName = student.Name, LastName = student.Surname, Email = student.Email };
+            var result = await _userManager.CreateAsync(user, "Password.123");
+
+
+            if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "Student");
+
                 _context.Add(student);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
+            }
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
             }
             return View(student);
         }

@@ -13,7 +13,8 @@ using SchoolManagmentSystem.Models;
 
 namespace SchoolManagmentSystem.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Academic Staff, Professor ")]
+
     public class EnrollmentsController : Controller
     {
         private readonly ApplicationDbContext _context;

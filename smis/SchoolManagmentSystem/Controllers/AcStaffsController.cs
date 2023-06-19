@@ -13,7 +13,7 @@ using SchoolManagmentSystem.Models;
 
 namespace SchoolManagmentSystem.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Academic Staff, Professor ")]
     public class AcStaffsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -129,10 +129,8 @@ namespace SchoolManagmentSystem.Controllers
 
             if (result.Succeeded)
             {
-                //assign role to student
                 await _userManager.AddToRoleAsync(user, "Academic Staff");
 
-                // Add the student to the database
                 _context.Add(acStaff);
                 await _context.SaveChangesAsync();
 
