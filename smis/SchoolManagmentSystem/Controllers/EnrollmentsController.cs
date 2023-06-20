@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,15 +19,19 @@ namespace SchoolManagmentSystem.Controllers
     public class EnrollmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public EnrollmentsController(ApplicationDbContext context)
+        public EnrollmentsController(ApplicationDbContext context, ILogger<EnrollmentsController> logger, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
 
         // GET: Enrollments
         public async Task<IActionResult> Index()
         {
+            var userId = _userManager.GetUserId(this.User);
             var applicationDbContext = _context.Enrollments.Include(e => e.Course).Include(e => e.Student);
             return View(await applicationDbContext.ToListAsync());
         }

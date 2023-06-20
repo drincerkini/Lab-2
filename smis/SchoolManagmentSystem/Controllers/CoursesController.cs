@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -78,21 +79,23 @@ namespace SchoolManagmentSystem.Controllers
         // GET: Assistants/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Courses == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var assistant = await _context.Courses
+            var course = await _context.Courses
                 .Include(c => c.Department)
-                .FirstOrDefaultAsync(m => m.DepartmentID == id);
-            if (assistant == null)
+                .FirstOrDefaultAsync(m => m.CourseID == id);
+
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return View(assistant);
+            return View(course);
         }
+
 
         // GET: Courses/Create
         public IActionResult Create()
