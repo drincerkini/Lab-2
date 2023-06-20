@@ -47,9 +47,12 @@
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Branches" asp-action="Index">Branches</a>
                                     </li>
-                                    <li>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="DeptBranches" asp-action="Index">Deptartments & Branches</a>
-                                    </li>
+                                    @if (!User.IsInRole("Student"))
+                                    {
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="DeptBranches" asp-action="Index">Deptartments & Branches</a>
+                                        </li>
+                                    }
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Professors" asp-action="Index">Professors</a>
                                     </li>
@@ -80,10 +83,12 @@
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
                                     </li>
-                                    <li>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Enrollments" asp-action="Index">Enrollments</a>
-                                    </li>
-
+                                    @if (!User.IsInRole("Student"))
+                                    {
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Enrollments" asp-action="Index">Enrollments</a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagmentSystem.Data;
 using SchoolManagmentSystem.Models;
@@ -15,7 +10,6 @@ using SchoolManagmentSystem.Models;
 namespace SchoolManagmentSystem.Controllers
 {
     [Authorize(Roles = "Admin, Academic Staff, Professor ")]
-
     public class AssistantsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,6 +20,8 @@ namespace SchoolManagmentSystem.Controllers
             _context = context;
             _userManager = userManager;
         }
+
+        [AllowAnonymous]
 
         // GET: Assistants
         public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
