@@ -3,10 +3,10 @@
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="../../public/img/carusel22.jpg" class="d-block w-100" alt="...">
+      <img src="../../public/img/carusel1.jpeg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img  src="../../public/img/carusel11.jpg" class="d-block w-100" alt="...">
+      <img  src="../../public/img/carusel2.jpeg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
       <img  src="../../public/img/carusel3.jpg" class="d-block w-100" alt="...">

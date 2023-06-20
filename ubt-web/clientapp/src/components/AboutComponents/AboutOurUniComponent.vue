@@ -12,7 +12,7 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="item">
-                            <img src="../../../public/img/campus.jpg" alt="item">
+                            <img src="../../../public/img/abuu.jpeg" alt="item">
                         <div class="carousel-caption">
                     </div>
                 </div>
@@ -35,16 +35,14 @@
             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                 <div class="well">
                     <h2>ABOUT OUR COLLEGE</h2>
-                    <p class="">Some of the services offered at our medical aesthetic clinic includes: </p>
+                    <p class="">We've been serving for ages! </p>
                 </div>
 
-                <p>Botox and dermal filler injections for facial rejuvenation</p>
-                <p>Laser treatments for hair removal, skin resurfacing, and tattoo removal</p>
-                <p>Chemical peels and microdermabrasion for skin exfoliation and rejuvenation</p>
-                <p>CoolSculpting and other non-surgical body contouring treatments</p>
-                <p>Platelet-rich plasma (PRP) therapy for hair restoration and skin rejuvenation</p>
-                <p>Medical-grade skincare products and treatments for various skin concerns, such as acne, wrinkles, and hyperpigmentation.</p>
-                <p>Medical aesthetic clinics are typically focused on improving a patient's appearance and self-confidence, rather than treating medical conditions. </p>
+                <p> The university opened with a mass held at Basel Minster on 4 April 1460. It has undergone dynamic development ever since its inception. During the first year following its founding, the University Register in Basel listed 226 students and lecturers. Today, the seven faculties at the University of DFT have around 13,000 students and over 350 professors.The University of DFT was founded in 1460, modeled on the universities of Bologna and Paris in the context of European humanism. It is the oldest university in Switzerland and one of the oldest in Europe. Throughout its long history, the university has adapted to new conditions time and time again, but it has also initiated its own developments, reflecting and driving change in society, business and culture. Since its earliest days, the university has been a place of cultural reflection, distinguished by its broad range of academic disciplines. It has maintained this tradition to the present day to become one of the most successful international universities.
+
+
+
+ </p>
             </div>
         </div>
 

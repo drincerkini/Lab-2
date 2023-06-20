@@ -9,10 +9,16 @@
                     <div class="blockabout">
                         <div class="blockabout-inner text-center text-sm-start">
                             <div class="title-big pb-3 mb-3">
-                                <h3>ABOUT US</h3>
+                                <h3>About DFT University</h3>
                             </div>
                             <p class="description-p text-muted pe-0 pe-lg-0">
-                                A medical aesthetic clinic is a type of healthcare facility that specializes in providing cosmetic treatments and procedures to improve the appearance and health of a patient's skin and body.
+                            The University of DFT has an international reputation of outstanding achievements in research and teaching. Founded in 1460, the University of DFT is the oldest university in Switzerland and has a history of success going back over 550 years.
+
+As a comprehensive university offering a wide range of high-quality educational opportunities, the University of Basel attracts students from Switzerland and the entire world, offering them outstanding studying conditions as they work towards their bachelor’s, master’s or PhD degrees. Today, the University of DFT has around 13,000 students from over a hundred nations, including 3,000 PhD students.
+
+The University of DFT has seven faculties covering a wide spectrum of academic disciplines. In international rankings, the University of DFT is regularly placed among the 100 top universities in the world thanks to its research achievements.
+
+
                             </p>
                             <p class="description-p text-muted pe-0 pe-lg-0">The goal of medical aesthetic clinics is to help patients achieve their desired cosmetic results while prioritizing their safety and well-being.</p>
                             <div class="sosmed-horizontal pt-3 pb-3">
@@ -27,7 +33,7 @@
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0">
                     <figure class="potoaboutwrap" >
-                        <img src="../../../public/img/campus.jpg " alt="campus Photo" style="width: 800px;"/>
+                        <img src="../../../public/img/abu.jpeg" alt="campus Photo" style="width: 800px;"/>
                     </figure>
                 </div>
             </div>

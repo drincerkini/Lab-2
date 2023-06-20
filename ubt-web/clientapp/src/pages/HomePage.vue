@@ -20,7 +20,10 @@
 
   <div class="aplikimiBanner">
     <h1 class="titulli fs-10 fw-bold text-light mt-0 pt-0">DFT University </h1>
-    <h4 class="font-monospace fs-1 text-light fw-bolder m-3 p-3">"Zgjedh më të mirin që të bëhesh më i miri"</h4>
+    <h4 class="font-monospace fs-1 text-light fw-bolder m-3 p-3">"Empowering Minds, Transforming Futures"
+
+
+</h4>
     <button class="butoni"><router-link to="/application" class="text-dark" style="text-decoration: none;">APLIKO ONLINE</router-link></button>
   </div>
 
